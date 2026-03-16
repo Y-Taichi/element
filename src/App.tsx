@@ -189,7 +189,7 @@ export default function App() {
   }).length;
 
   const maxPossiblePulls = Math.floor(money / COST_PER_PULL);
-  const multiPullCount = money >= 50 ? 10 : maxPossiblePulls;
+  const multiPullCount = money >= 10 * COST_PER_PULL ? 10 : maxPossiblePulls;
   const multiPullCost = multiPullCount * COST_PER_PULL;
 
   const renderHeader = () => (
@@ -366,11 +366,11 @@ export default function App() {
             1回 (${COST_PER_PULL})
           </button>
           <button
-            className={`flex-1 ${money >= 50 ? 'bg-red-500' : (multiPullCount > 1 ? 'bg-orange-500' : 'bg-gray-500')} text-white text-4xl md:text-6xl font-black py-2 leading-none`}
+            className={`flex-1 ${money >= 10 * COST_PER_PULL ? 'bg-red-500' : (multiPullCount > 1 ? 'bg-orange-500' : 'bg-gray-500')} text-white text-4xl md:text-6xl font-black py-2 leading-none`}
             onClick={() => multiPullCount > 1 && handlePull(multiPullCount, multiPullCost)}
             disabled={multiPullCount <= 1}
           >
-            {money >= 50 ? `10連 ($50)` : (multiPullCount > 1 ? `${multiPullCount}連 ($${multiPullCost})` : `10連 ($50)`)}
+            {money >= 10 * COST_PER_PULL ? `10連 ($${10 * COST_PER_PULL})` : (multiPullCount > 1 ? `${multiPullCount}連 ($${multiPullCost})` : `10連 ($${10 * COST_PER_PULL})`)}
           </button>
         </div>
       )}
