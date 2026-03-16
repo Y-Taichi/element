@@ -15,7 +15,7 @@ interface Stats {
   rarityCounts: Record<Rarity, number>;
 }
 
-const COST_PER_PULL = 5;
+const COST_PER_PULL = 10;
 
 const pullGacha = (isGuaranteedSR: boolean): ElementData => {
   const rand = Math.random();
@@ -53,7 +53,7 @@ export default function App() {
     const saved = localStorage.getItem('gacha_money');
     return saved !== null ? parseInt(saved, 10) : 200;
   });
-  
+
   const [inventory, setInventory] = useState<InventoryItem[]>(() => {
     const saved = localStorage.getItem('gacha_inventory');
     return saved ? JSON.parse(saved) : [];
@@ -217,7 +217,7 @@ export default function App() {
       >
         <motion.div
           className={`absolute inset-0 ${getRarityColor(el.rarity)} ${bgSizeClass} -z-10`}
-          animate={isHighRarity ? { 
+          animate={isHighRarity ? {
             backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             filter: ['saturate(100%)', 'saturate(250%)', 'saturate(100%)']
           } : {}}
@@ -258,7 +258,7 @@ export default function App() {
         <div className={`absolute inset-0 isolate border-4 border-black dark:border-white flex flex-col items-center justify-center overflow-hidden`}>
           <motion.div
             className={`absolute inset-0 ${getRarityColor(el.rarity)} ${bgSizeClass} -z-10`}
-            animate={isHighRarity ? { 
+            animate={isHighRarity ? {
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               filter: ['saturate(100%)', 'saturate(250%)', 'saturate(100%)']
             } : {}}
